@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-17">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/reece/Documents/jar_files/jackson-annotations-2.14.0-rc2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/reece/Documents/jar_files/jackson-core-2.14.0-rc2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/reece/Documents/jar_files/jackson-databind-2.14.0-rc2.jar"/>
+	<classpathentry kind="lib" path="C:/Users/reece/Documents/jar_files/sqlite-jdbc-3.36.0.3.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/javaFx"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>
