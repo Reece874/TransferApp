@@ -14,7 +14,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-import model.Connector;
 import model.SchoolSearch;
 import model.Singleton;
 
@@ -94,7 +93,7 @@ public class ExpandController implements Initializable{
 		SwapScene(actionevent, "/view/SchoolView.fxml", "College Search");
 	}
 	
-	public void Toggle(ActionEvent actionevent) {
+	public void Toggle() {
 		if(Singleton.getInstance().toggle(LblSchoolID.getText().substring(LblSchoolID.getText().lastIndexOf(" ")+1))) {
 			LblFavorite.setVisible(!LblFavorite.isVisible()); 
 		}
@@ -126,6 +125,9 @@ public class ExpandController implements Initializable{
 		LblLocale.setText("Locale: " + items[19]);
 		TAMajors.setText(items[20]);
 		
+		if(Singleton.getInstance().isFavoriteSchool()) {
+			LblFavorite.setVisible(true);
+		}
 	}
 	
 	public void SwapScene(ActionEvent actionevent, String resource, String SceneName){

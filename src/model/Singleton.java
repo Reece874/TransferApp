@@ -13,7 +13,6 @@ public class Singleton {
 	private Connector connect; 
 	
 	private Singleton() {
-		String SchoolID = null; 
 		connect = new Connector(); 
 	}
 	
@@ -24,16 +23,39 @@ public class Singleton {
 		return singleton; 
 	}
 	
-	public void setUser(int ID, String FullName, String Username, String Password, String favsList) {
-		user = new User(ID, FullName, Username, Password, favsList);
+	public void setUser(int ID, String FullName, String Username, String Password, String favsList, String SAT) {
+		user = new User(ID, FullName, Username, Password, favsList, SAT);
+	}
+	
+	public void setFavs() {
+		UserSearch.setFavsList(user.getFavs(),user.getId());
+	}
+	
+	public String[] getUserFavs() {
+		return user.getFavs();
+	}
+	
+	public String getSAT() {
+		return user.getSAT();
+	}
+	
+	public String getFullName() {
+		return user.getFullName();
+	}
+	
+	public boolean isFavoriteSchool() {
+		return user.isFav(SchoolID);
 	}
 	
 	public boolean toggle(String id) {
 		return user.toggleFavorite(id);
 	}
 	
-	public void display() {
-		System.out.println(user.toString());
+	public boolean isUserSignedIn() {
+		if(user == null) {
+			return false; 
+		}
+		return true;
 	}
 	
 	public Connector getConnection() {

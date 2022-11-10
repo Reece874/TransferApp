@@ -11,7 +11,6 @@ public class MainApp extends Application{
 	public static void main(String[] args) {
 		Singleton.getInstance().getConnection();
 		launch(args); 
-		SchoolSearch.test();
 	}
 
 	@Override
@@ -22,6 +21,13 @@ public class MainApp extends Application{
 		stage.setTitle("Log in");
 		stage.show();
 		
+	}
+	
+	public void stop() throws Exception{
+		if(Singleton.getInstance().isUserSignedIn()) {
+			Singleton.getInstance().setFavs();
+		}
+		super.stop();
 	}
 
 }

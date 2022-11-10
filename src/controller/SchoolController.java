@@ -5,7 +5,6 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import model.ComboLists;
-import model.Connector;
 import model.InfoDisplays;
 import model.SchoolSearch;
 import model.Singleton;
@@ -20,6 +19,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.Spinner;
 import javafx.scene.control.SpinnerValueFactory;
 import javafx.scene.control.TableColumn;
@@ -66,6 +66,9 @@ public class SchoolController implements Initializable{
 	@FXML
 	private Button Search;
 	
+	@FXML
+	private Button BtnUseSAT; 
+	
 	@FXML 
 	private ComboBox<String> ComboState; 
 	
@@ -106,6 +109,9 @@ public class SchoolController implements Initializable{
 	private CheckBox CheckNotRequired; 
 	
 	@FXML
+	private Label LblHi; 
+	
+	@FXML
 	private Spinner<Integer> SpinnerTuition; 
 	
 	@FXML
@@ -116,6 +122,11 @@ public class SchoolController implements Initializable{
 	
 	@FXML
 	private Spinner<Integer> SpinnerAdmissions; 
+
+	
+	public void GetFavs() {
+		SchoolTable.setItems(SchoolSearch.getFavorites(Singleton.getInstance().getUserFavs()));
+	}
 	
 	
 	public void SearchParams() {
@@ -160,6 +171,13 @@ public class SchoolController implements Initializable{
 		Singleton.getInstance().setRequirement(CheckNotRequired.isSelected());
 	}
 	
+	public void UseMyScore() {
+		CheckNotRequired.setSelected(false);
+		CheckNotRequired.setDisable(!CheckNotRequired.isDisable());	
+		TFSAT.setText((TFSAT.isDisable())? "" : Singleton.getInstance().getSAT());
+		TFSAT.setDisable(!TFSAT.isDisable());
+	}
+	
 	public void ExpandSchool(ActionEvent actionevent) {
 		if(SchoolTable.getSelectionModel().getSelectedItem() != null) {
 			Singleton.getInstance().setSchoolID(SchoolTable.getSelectionModel().getSelectedItem().getID());
@@ -191,6 +209,8 @@ public class SchoolController implements Initializable{
 		ColCity.setCellValueFactory(new PropertyValueFactory<>("City"));
 		ColState.setCellValueFactory(new PropertyValueFactory<>("State"));
 		
+		LblHi.setText("Hello, " + Singleton.getInstance().getFullName());
+		BtnUseSAT.setDisable((Singleton.getInstance().getSAT().equals("0")? true : false)); 	
 		SchoolTable.setItems(SchoolSearch.getAll());		
 	}
 	

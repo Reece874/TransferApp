@@ -3,6 +3,7 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 public class UserSearch {
 	
@@ -17,7 +18,7 @@ public class UserSearch {
 			ResultSet rs = preparedStatement.executeQuery();
 			if(rs.next()) {
 				Singleton.getInstance().setUser(rs.getInt("ID"), rs.getString("FullName"), rs.getString("Username"),
-						rs.getString("Password"), rs.getString("FavsList"));
+						rs.getString("Password"), rs.getString("FavsList"), rs.getString("SATScore"));
 				return true; 
 			}else {
 				return false; 
@@ -35,7 +36,8 @@ public class UserSearch {
 		if(UserCreationCheckers.checkEverything(Username, Password, PasswordConf, FirstName, LastName, SATScore) && confirmUniqueUser(Username)) {
 			try {
 				String Fullname = FirstName + " " + LastName; 
-				add(Username, Password, Fullname, Integer.parseInt(SATScore));
+				int SAT = (SATScore == null || SATScore.equals(""))? 0 : Integer.parseInt(SATScore); 
+				add(Username, Password, Fullname, SAT);
 				return true; 
 			}catch(Exception e) {
 				InfoDisplays.displayGenericError("Something Went Wrong!", "Please try again later");
@@ -43,6 +45,23 @@ public class UserSearch {
 			}
 		}
 		return false;
+	}
+	
+	public static void setFavsList(String[] ids, int ID) {
+		Connector.resetConnection();
+		PreparedStatement preparedStatement = null; 
+		String query = ("UPDATE users set FavsList=? where ID=?");
+		try {
+			preparedStatement = Connector.prepareStatement(query);
+			preparedStatement.setString(1, Arrays.toString(ids));
+			preparedStatement.setInt(2, ID);
+			preparedStatement.executeUpdate(); 
+		}catch(SQLException e) {
+			InfoDisplays.displayGenericError("Error connecting to Datsabase", "Please Try Again Later");
+		}finally {
+			Connector.closeConnection();
+		}
+		
 	}
 	
 	private static void add(String Username, String Password, String FullName, int SATScore) {
@@ -72,7 +91,7 @@ public class UserSearch {
 			preparedStatement.setString(1, Username);
 			ResultSet rs = preparedStatement.executeQuery();
 			if(rs.next()) {
-				System.out.println(rs.getString("Username"));
+				InfoDisplays.displayGenericInformation("Username is Taken.");
 				return false; 
 			}else {
 				return true; 

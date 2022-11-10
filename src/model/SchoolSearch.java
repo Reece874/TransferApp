@@ -3,33 +3,13 @@ package model;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.Arrays;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 public class SchoolSearch {
-	
-	//KEEP THIS HERE TILL YOU FIGURE OUT FAVSLIST
-	public static void test() {
-		Connector.resetConnection();
-		Statement statement;
-		String query = "select * from users"; 
-		try {
-			PreparedStatement ps = Connector.prepareStatement(query);
-			ResultSet result = ps.executeQuery();
-			String[] favs = result.getString("FavsList").split(" "); 
-			System.out.println(Arrays.toString(favs));
-			System.out.println(result.getString("FavsList"));
-		}catch(SQLException e){
-			System.out.println("Something went Wrong");
-		}finally {
-			Connector.closeConnection();
-		}
-	}
 
-	
 	public static String[] getItems(String ID) {
 		Connector.resetConnection();
 		String query = "select * from schools "
@@ -51,13 +31,29 @@ public class SchoolSearch {
 					replacers.replace(result.getString("AdmissionsRateOverall")), replacers.replace(result.getString("CompletionCohort")),
 					result.getString("Region"), result.getString("TestRequire"), result.getString("Locale"),
 					result.getString("MajorsOffered")};
-			System.out.println(result.getString("StudentPopulation"));
 			Connector.closeConnection();
 			return items; 		
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return null; 
+	}
+	
+	public static ObservableList<TableItem> getFavorites(String[] arr){
+		Connector.resetConnection();
+		ObservableList<TableItem> list = FXCollections.observableArrayList();
+		String a = Arrays.toString(arr);
+		a = a.substring(1, a.length()-1);
+		String query = ("select SchoolID, SchoolName, City, State from schools WHERE SchoolID IN (" + a + ") ");
+		try {
+			list = getList(query, list);
+		}
+		catch(SQLException e) {
+			e.printStackTrace();
+			System.out.println("Something went Wrong");
+		}
+		Connector.closeConnection();
+		return list; 
 	}
 	
 	public static ObservableList<TableItem> getAll(){
@@ -81,7 +77,7 @@ public class SchoolSearch {
 		+ searchOwnership(Ownership) + searchAdmission(Admission) + searchPellGrant(PellGrant) + searchNotRequired()
 		+ searchRegion(Region) + searchLocale(Locale));
 		try {
-			list = getList(query, list);
+			list = getList(query.toString(), list);
 		}
 		catch(SQLException e) {
 			e.printStackTrace();
@@ -209,7 +205,6 @@ public class SchoolSearch {
 			return "";
 		}catch(Exception e) {
 			InfoDisplays.displayGenericError("Student population must be integers!", "Search will continue without population.");
-			System.out.println(min + " " + max);
 			return ""; 
 		}
 	}
@@ -276,13 +271,13 @@ public class SchoolSearch {
 		return ""; 
 	}
 	
-	private static String createFinalQuery(StringBuilder query) {
-		String finalQuery = query.toString().substring(0, query.lastIndexOf(" ")); 
-		//System.out.println(finalQuery);
+	private static String createFinalQuery(String query) {
+		String finalQuery = query.substring(0, query.lastIndexOf(" ")); 
+		System.out.println(finalQuery);
 		return finalQuery; 
 	}
 	
-	private static ObservableList<TableItem> getList(StringBuilder query, ObservableList<TableItem> list) throws SQLException{
+	private static ObservableList<TableItem> getList(String query, ObservableList<TableItem> list) throws SQLException{
 		
 		PreparedStatement preparedStatement = null;
 		preparedStatement = Connector.prepareStatement(createFinalQuery(query));
