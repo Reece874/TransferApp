@@ -6,146 +6,142 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExpandController">
+<AnchorPane prefHeight="833.0" prefWidth="1182.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ExpandController">
    <children>
-      <AnchorPane layoutX="-491.0" layoutY="-255.0" prefHeight="1024.0" prefWidth="1618.0">
-         <children>
-            <Label fx:id="LblSchoolName" layoutX="523.0" layoutY="270.0" text="School Name: ">
-               <font>
-                  <Font size="34.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblSchoolID" layoutX="531.0" layoutY="339.0" text="School ID: ">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblCity" layoutX="531.0" layoutY="392.0" text="City:">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblState" layoutX="531.0" layoutY="437.0" text="State: ">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblRegion" layoutX="531.0" layoutY="480.0" text="Region:">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblZip" layoutX="533.0" layoutY="529.0" text="Zip Code: ">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblHighest" layoutX="925.0" layoutY="339.0" text="Highest Degree:">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblDominant" layoutX="925.0" layoutY="382.0" text="Predominant Degree: ">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label layoutX="925.0" layoutY="783.0" text="Tuition:">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblInState" layoutX="925.0" layoutY="826.0" text="In State: ">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblOutState" layoutX="925.0" layoutY="869.0" text="Out of State: ">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <TextArea fx:id="TAMajors" editable="false" layoutX="925.0" layoutY="437.0" prefHeight="329.0" prefWidth="505.0" promptText="NA">
-               <font>
-                  <Font size="23.0" />
-               </font>
-            </TextArea>
-            <Label layoutX="1191.0" layoutY="783.0" text="Dorming:">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblOnCamp" layoutX="1191.0" layoutY="826.0" text="On Campus: ">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblOffCamp" layoutX="1191.0" layoutY="869.0" text="Off Campus: ">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblReligion" layoutX="531.0" layoutY="624.0" text="Religious:">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblTestRequire" layoutX="518.0" layoutY="950.0" text="Test Required?:">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblOwnership" layoutX="531.0" layoutY="667.0" text="Ownership:">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblPopulation" layoutX="528.0" layoutY="740.0" text="Student Population: ">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblAdmission" layoutX="530.0" layoutY="783.0" text="Admission Rate: ">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblPellGrant" layoutX="523.0" layoutY="826.0" text="Pell Grant Rate: ">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblCompletion" layoutX="521.0" layoutY="869.0" text="Completion Cohort: ">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Button fx:id="BtnFavorite" layoutX="1444.0" layoutY="580.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="133.0" text="Toggle Favorite">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-            <Label layoutX="1451.0" layoutY="514.0" text="Favorited">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Button fx:id="BtnSwap" layoutX="1444.0" layoutY="637.0" mnemonicParsing="false" onAction="#Cancel" prefHeight="37.0" prefWidth="133.0" text="Go Back!">
-               <font>
-                  <Font size="16.0" />
-               </font>
-            </Button>
-            <Label fx:id="LblSAT" layoutX="520.0" layoutY="907.0" text="Avg SAT:">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-            <Label fx:id="LblLocale" layoutX="528.0" layoutY="703.0" text="Locale:">
-               <font>
-                  <Font size="29.0" />
-               </font>
-            </Label>
-         </children>
-      </AnchorPane>
+      <Label fx:id="LblSchoolName" layoutX="68.0" layoutY="52.0" text="School Name: ">
+         <font>
+            <Font size="34.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblSchoolID" layoutX="76.0" layoutY="121.0" text="School ID: ">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblCity" layoutX="76.0" layoutY="174.0" text="City:">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblState" layoutX="76.0" layoutY="219.0" text="State: ">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblRegion" layoutX="76.0" layoutY="262.0" text="Region:">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblZip" layoutX="78.0" layoutY="311.0" text="Zip Code: ">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblHighest" layoutX="470.0" layoutY="121.0" text="Highest Degree:">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblDominant" layoutX="470.0" layoutY="164.0" text="Predominant Degree: ">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label layoutX="470.0" layoutY="565.0" text="Tuition:">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblInState" layoutX="470.0" layoutY="608.0" text="In State: ">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblOutState" layoutX="470.0" layoutY="651.0" text="Out of State: ">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="TAMajors" editable="false" layoutX="470.0" layoutY="219.0" prefHeight="329.0" prefWidth="505.0" promptText="NA">
+         <font>
+            <Font size="23.0" />
+         </font>
+      </TextArea>
+      <Label layoutX="736.0" layoutY="565.0" text="Dorming:">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblOnCamp" layoutX="736.0" layoutY="608.0" text="On Campus: ">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblOffCamp" layoutX="736.0" layoutY="651.0" text="Off Campus: ">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblReligion" layoutX="76.0" layoutY="406.0" text="Religious:">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblTestRequire" layoutX="63.0" layoutY="732.0" text="Test Required?:">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblOwnership" layoutX="76.0" layoutY="449.0" text="Ownership:">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblPopulation" layoutX="73.0" layoutY="522.0" text="Student Population: ">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblAdmission" layoutX="75.0" layoutY="565.0" text="Admission Rate: ">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblPellGrant" layoutX="68.0" layoutY="608.0" text="Pell Grant Rate: ">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblCompletion" layoutX="66.0" layoutY="651.0" text="Completion Cohort: ">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Button fx:id="BtnFavorite" layoutX="989.0" layoutY="362.0" mnemonicParsing="false" onAction="#Toggle" prefHeight="37.0" prefWidth="133.0" text="Toggle Favorite">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label fx:id="LblFavorite" layoutX="996.0" layoutY="296.0" text="Favorited" visible="false">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Button fx:id="BtnSwap" layoutX="989.0" layoutY="419.0" mnemonicParsing="false" onAction="#Cancel" prefHeight="37.0" prefWidth="133.0" text="Go Back!">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Button>
+      <Label fx:id="LblSAT" layoutX="65.0" layoutY="689.0" text="Avg SAT:">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
+      <Label fx:id="LblLocale" layoutX="73.0" layoutY="485.0" text="Locale:">
+         <font>
+            <Font size="29.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

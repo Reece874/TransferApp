@@ -11,6 +11,7 @@ import javafx.collections.ObservableList;
 
 public class SchoolSearch {
 	
+	//KEEP THIS HERE TILL YOU FIGURE OUT FAVSLIST
 	public static void test() {
 		Connector.resetConnection();
 		Statement statement;
@@ -277,7 +278,7 @@ public class SchoolSearch {
 	
 	private static String createFinalQuery(StringBuilder query) {
 		String finalQuery = query.toString().substring(0, query.lastIndexOf(" ")); 
-		System.out.println(finalQuery);
+		//System.out.println(finalQuery);
 		return finalQuery; 
 	}
 	

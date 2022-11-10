@@ -84,15 +84,20 @@ public class ExpandController implements Initializable{
 	private Label LblLocale; 
 	
 	@FXML
+	private Label LblFavorite;
+	
+	@FXML
 	private TextArea TAMajors; 
-	
-	
-	
-	Connector connect = new Connector(); 
 
 	
 	public void Cancel(ActionEvent actionevent) {
 		SwapScene(actionevent, "/view/SchoolView.fxml", "College Search");
+	}
+	
+	public void Toggle(ActionEvent actionevent) {
+		if(Singleton.getInstance().toggle(LblSchoolID.getText().substring(LblSchoolID.getText().lastIndexOf(" ")+1))) {
+			LblFavorite.setVisible(!LblFavorite.isVisible()); 
+		}
 	}
 
 	@Override

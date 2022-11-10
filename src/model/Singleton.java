@@ -3,6 +3,7 @@ package model;
 public class Singleton {
 	
 	private static Singleton singleton; 
+	private User user; 
 	private String SchoolID; 
 	private boolean OutOfState;
 	private boolean OffCampus; 
@@ -21,6 +22,18 @@ public class Singleton {
 			singleton = new Singleton(); 
 		}
 		return singleton; 
+	}
+	
+	public void setUser(int ID, String FullName, String Username, String Password, String favsList) {
+		user = new User(ID, FullName, Username, Password, favsList);
+	}
+	
+	public boolean toggle(String id) {
+		return user.toggleFavorite(id);
+	}
+	
+	public void display() {
+		System.out.println(user.toString());
 	}
 	
 	public Connector getConnection() {

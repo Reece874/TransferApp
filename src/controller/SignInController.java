@@ -28,7 +28,8 @@ public class SignInController{
 	private TextField tfPswd; 
 	
 	public void SignIn(ActionEvent actionevent) {
-		if(UserSearch.login(tfUser.getText(), tfPswd.getText()) == true) {
+		if(UserSearch.login(tfUser.getText(), tfPswd.getText())) {
+			Singleton.getInstance().display();
 			SwapScene(actionevent, "/view/SchoolView.fxml", "College Search");
 		}else {
 			InfoDisplays.displayGenericError("Username or Password is incorrect", "If you do not have an account, please sign up");
