@@ -33,7 +33,7 @@ public class UserSearch {
 	}
 	
 	public static boolean SignUp(String Username, String Password, String PasswordConf, String FirstName, String LastName, String SATScore) {
-		if(UserCreationCheckers.checkEverything(Username, Password, PasswordConf, FirstName, LastName, SATScore) && confirmUniqueUser(Username)) {
+		if(UserCreationCheckers.checkEverything(Username, Password, PasswordConf, FirstName, LastName, SATScore) && containsUsername(Username, 0)) {
 			try {
 				String Fullname = FirstName + " " + LastName; 
 				int SAT = (SATScore == null || SATScore.equals(""))? 0 : Integer.parseInt(SATScore); 
@@ -47,6 +47,20 @@ public class UserSearch {
 		return false;
 	}
 	
+	public static boolean UpdateAccount(String Username, String Password, String PasswordConf, String Name, String SATScore, int ID) {
+		if(UserCreationCheckers.checkEverything(Username, Password, PasswordConf, Name, Name, SATScore) && containsUsername(Username, ID)) {
+			try {
+				int SAT = (SATScore == null || SATScore.equals(""))? 0 : Integer.parseInt(SATScore); 
+				update(Username, PasswordConf, Name, SAT, ID);
+				return true; 
+			}catch(Exception e) {
+				InfoDisplays.displayGenericError("Something Went Wrong!", "Please try again later");
+				return false; 
+			}
+		}
+		return false;
+	}
+
 	public static void setFavsList(String[] ids, int ID) {
 		Connector.resetConnection();
 		PreparedStatement preparedStatement = null; 
@@ -82,26 +96,47 @@ public class UserSearch {
 		}
 	}
 	
-	private static boolean confirmUniqueUser(String Username) {
+	private static void update(String Username, String Password, String FullName, int SATScore, int ID) {
 		Connector.resetConnection();
 		PreparedStatement preparedStatement = null; 
-		String query = ("select * from users where Username=?");
+		String query = ("UPDATE users set Username=?, Password=?, FullName=?, SATScore=? where ID=?");
 		try {
 			preparedStatement = Connector.prepareStatement(query);
 			preparedStatement.setString(1, Username);
-			ResultSet rs = preparedStatement.executeQuery();
-			if(rs.next()) {
-				InfoDisplays.displayGenericInformation("Username is Taken.");
-				return false; 
-			}else {
-				return true; 
-			}
+			preparedStatement.setString(2, Password);
+			preparedStatement.setString(3, FullName);
+			preparedStatement.setInt(4, SATScore);
+			preparedStatement.setInt(5, ID);
+			preparedStatement.executeUpdate(); 
 		}catch(SQLException e) {
 			InfoDisplays.displayGenericError("Error connecting to Datsabase", "Please Try Again Later");
-			return false; 
 		}finally {
 			Connector.closeConnection();
 		}
 	}
+	
+    public static boolean containsUsername(String user, int ID) {
+    	Connector.resetConnection();
+        PreparedStatement preparedStatement = null; 
+        ResultSet results = null; 
+        String query = "select * from users where Username=?";
+        try {
+            preparedStatement = Connector.prepareStatement(query);
+            preparedStatement.setString(1, user);
+            results = preparedStatement.executeQuery();
+            if(!results.next() || results.getInt("ID") == ID) {
+                return true; 
+            }
+            
+          InfoDisplays.displayGenericInformation("Username is already in use");
+          return false; 
+        }catch(SQLException e) {
+            InfoDisplays.displayGenericError("Something Went Wrong", "Please Try Again later");
+            return false; 
+        }finally {
+        	Connector.closeConnection();
+        }
+        
+    }
 	
 }

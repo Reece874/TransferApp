@@ -70,13 +70,14 @@
             <ComboBox fx:id="ComboLocale" layoutX="150.0" layoutY="281.0" prefHeight="25.0" prefWidth="112.0" />
             <Label layoutX="89.0" layoutY="253.0" prefHeight="17.0" prefWidth="49.0" text="Region:" />
             <Label layoutX="90.0" layoutY="285.0" prefHeight="17.0" prefWidth="49.0" text="Locale:" />
-            <Button fx:id="BtnFavs" layoutX="1063.0" layoutY="859.0" mnemonicParsing="false" onAction="#GetFavs" prefHeight="25.0" prefWidth="112.0" text="Favorites" />
+            <Button fx:id="BtnFavs" layoutX="933.0" layoutY="859.0" mnemonicParsing="false" onAction="#GetFavs" prefHeight="25.0" prefWidth="112.0" text="Favorites" />
             <Label fx:id="LblHi" layoutX="90.0" layoutY="27.0" text="Hello, ">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
             </Label>
             <Button fx:id="BtnUseSAT" layoutX="49.0" layoutY="646.0" mnemonicParsing="false" onAction="#UseMyScore" text="Use My SAT Score In Search" />
+            <Button fx:id="BtnAccount" layoutX="1063.0" layoutY="859.0" mnemonicParsing="false" onAction="#goToEdit" prefHeight="25.0" prefWidth="112.0" text="Account" />
          </children>
       </AnchorPane>
    </children>

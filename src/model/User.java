@@ -20,10 +20,6 @@ public class User {
 		this.SAT = SAT;
 	}
 	
-	public int getId() {
-		return ID;
-	}
-	
 	public String[] getFavs() {
 		return FavsList; 
 	}

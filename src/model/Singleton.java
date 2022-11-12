@@ -28,15 +28,36 @@ public class Singleton {
 	}
 	
 	public void setFavs() {
-		UserSearch.setFavsList(user.getFavs(),user.getId());
+		UserSearch.setFavsList(user.getFavs(), user.getID());
 	}
 	
 	public String[] getUserFavs() {
 		return user.getFavs();
 	}
 	
+	public boolean updateAccount(String Username, String Password, String PasswordConf, String Name, String SAT) {
+		if(UserSearch.UpdateAccount(Username, Password, PasswordConf, Name, SAT, user.getID())) {
+			user.setUsername(Username);
+			user.setPassword(Password);
+			user.setFullName(Name);
+			user.setSAT(SAT);
+			return true;
+		}
+		else {
+			return false; 
+		}
+	}
+	
 	public String getSAT() {
 		return user.getSAT();
+	}
+	
+	public String getUsername() {
+		return user.getUsername();
+	}
+	
+	public String getPassword() {
+		return user.getPassword();
 	}
 	
 	public String getFullName() {

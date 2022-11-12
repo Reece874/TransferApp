@@ -188,6 +188,10 @@ public class SchoolController implements Initializable{
 		}
 	}
 	
+	public void goToEdit(ActionEvent actionevent) {
+		SwapScene(actionevent, "/view/EditView.fxml", "Account Info");
+	}
+	
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {		
 		SpinnerTuition.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(0, 100000, 0, 500));

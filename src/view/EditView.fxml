@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.EditController">
+   <children>
+      <AnchorPane prefHeight="522.0" prefWidth="582.0">
+         <children>
+            <Label layoutX="217.0" layoutY="39.0" text="Account">
+               <font>
+                  <Font name="System Bold" size="41.0" />
+               </font>
+            </Label>
+            <Label layoutX="108.0" layoutY="160.0" prefHeight="38.0" prefWidth="82.0" text="Username:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="118.0" layoutY="254.0" prefHeight="38.0" prefWidth="127.0" text="Password:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="54.0" layoutY="298.0" prefHeight="38.0" prefWidth="191.0" text="Confirm Password:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="135.0" layoutY="115.0" prefHeight="38.0" prefWidth="82.0" text="Name:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Label layoutX="117.0" layoutY="205.0" prefHeight="38.0" prefWidth="82.0" text="SAT Score:">
+               <font>
+                  <Font size="17.0" />
+               </font>
+            </Label>
+            <Button fx:id="BtnGoBack" layoutX="104.0" layoutY="398.0" mnemonicParsing="false" onAction="#GoBack" prefHeight="53.0" prefWidth="173.0" text="Go Back">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <Button fx:id="BtnUpdateAccount" layoutX="315.0" layoutY="398.0" mnemonicParsing="false" onAction="#Update" prefHeight="53.0" prefWidth="159.0" text="Update Account">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <TextField fx:id="TfName" layoutX="205.0" layoutY="122.0" prefHeight="25.0" prefWidth="219.0" />
+            <TextField fx:id="TfUsername" layoutX="205.0" layoutY="167.0" prefHeight="25.0" prefWidth="219.0" />
+            <TextField fx:id="TfSAT" layoutX="205.0" layoutY="212.0" prefHeight="25.0" prefWidth="219.0" />
+            <TextField fx:id="TFPswd" layoutX="205.0" layoutY="260.0" prefHeight="25.0" prefWidth="219.0" />
+            <TextField fx:id="TFNewPswd" layoutX="205.0" layoutY="304.0" prefHeight="25.0" prefWidth="219.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
