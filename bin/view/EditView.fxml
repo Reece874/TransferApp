@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -53,8 +54,8 @@
             <TextField fx:id="TfName" layoutX="205.0" layoutY="122.0" prefHeight="25.0" prefWidth="219.0" />
             <TextField fx:id="TfUsername" layoutX="205.0" layoutY="167.0" prefHeight="25.0" prefWidth="219.0" />
             <TextField fx:id="TfSAT" layoutX="205.0" layoutY="212.0" prefHeight="25.0" prefWidth="219.0" />
-            <TextField fx:id="TFPswd" layoutX="205.0" layoutY="260.0" prefHeight="25.0" prefWidth="219.0" />
-            <TextField fx:id="TFNewPswd" layoutX="205.0" layoutY="304.0" prefHeight="25.0" prefWidth="219.0" />
+            <PasswordField fx:id="TFPswd" layoutX="205.0" layoutY="261.0" prefHeight="25.0" prefWidth="219.0" />
+            <PasswordField fx:id="TFNewPswd" layoutX="205.0" layoutY="304.0" prefHeight="25.0" prefWidth="219.0" />
          </children>
       </AnchorPane>
    </children>

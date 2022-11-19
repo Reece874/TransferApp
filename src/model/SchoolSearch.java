@@ -61,8 +61,8 @@ public class SchoolSearch {
 	}
 	
 	public static ObservableList<TableItem> searchParams(String ID, String Name, String City, String State, 
-			String Highest, String Predominant, int Tuition, int RoomBoard, String minPopulation, String maxPopulation, 
-			String Major, String SATScore, String religion, String Ownership, int PellGrant, int Admission, String Region, String Locale){
+		String Highest, String Predominant, int Tuition, int RoomBoard, String minPopulation, String maxPopulation, 
+		String Major, String SATScore, String religion, String Ownership, int PellGrant, int Admission, String Region, String Locale){
 		
 		Connector.resetConnection();
 		ObservableList<TableItem> list = FXCollections.observableArrayList();

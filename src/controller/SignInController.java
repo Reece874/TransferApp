@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.InfoDisplays;
@@ -19,11 +20,10 @@ public class SignInController{
 	private TextField tfUser; 
 	
 	@FXML
-	private TextField tfPswd; 
+	private PasswordField tfPswd; 
 	
 	public void SignIn(ActionEvent actionevent) {
 		if(UserSearch.login(tfUser.getText(), tfPswd.getText())) {
-			//Singleton.getInstance().display();
 			SwapScene(actionevent, "/view/SchoolView.fxml", "College Search");
 		}else {
 			InfoDisplays.displayGenericError("Username or Password is incorrect", "If you do not have an account, please sign up");

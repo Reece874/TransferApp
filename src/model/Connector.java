@@ -1,6 +1,7 @@
 package model;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
@@ -9,8 +10,20 @@ public class Connector {
 	
 	private static Connection conn = null; 
 	
+	public static Connection connector() {
+		try {
+			Class.forName("org.sqlite.JDBC");
+			String url = "jdbc:sqlite:SchoolDatabase.db";
+			Connection conn = DriverManager.getConnection(url);	
+			return conn; 
+		}catch(Exception e){
+			e.printStackTrace();
+			return null; 
+		}
+	}
+	
 	public Connector() {
-		conn = SQLiteConnector.connector();
+		conn = connector();
 		if(conn == null) {
 			System.out.println("Connection failed");
 			System.exit(1);
@@ -37,7 +50,7 @@ public class Connector {
 	public static void resetConnection() {
 		try {
 			if(conn.isClosed()) {
-				conn = SQLiteConnector.connector();
+				conn = connector();
 				if(conn == null) {
 					System.out.println("Connection Failed");
 				}

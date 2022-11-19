@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.InfoDisplays;
@@ -25,10 +26,10 @@ public class EditController implements Initializable{
 	private TextField TfUsername; 
 	
 	@FXML
-	private TextField TFPswd; 
+	private PasswordField TFPswd; 
 	
 	@FXML
-	private TextField TFNewPswd; 
+	private PasswordField TFNewPswd; 
 	
 	@FXML
 	private TextField TfSAT; 

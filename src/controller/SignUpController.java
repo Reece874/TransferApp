@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.UserSearch;
@@ -18,7 +19,7 @@ public class SignUpController {
 	private TextField tfUser; 
 	
 	@FXML
-	private TextField tfPswd; 
+	private PasswordField tfPswd; 
 	
 	@FXML
 	private TextField tfFirst;
@@ -30,7 +31,7 @@ public class SignUpController {
 	private TextField tfSAT;
 	
 	@FXML
-	private TextField tfPswdconf;
+	private PasswordField tfPswdconf;
 	
 	public void SignUp(ActionEvent actionevent) {
 		if(UserSearch.SignUp(tfUser.getText(), tfPswd.getText(), tfPswdconf.getText(), tfFirst.getText(), tfLast.getText(), tfSAT.getText())) {
