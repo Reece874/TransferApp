@@ -24,8 +24,8 @@ public class MainApp extends Application{
 	}
 	
 	public void stop() throws Exception{
-		if(Singleton.getInstance().isUserSignedIn()) {
-			Singleton.getInstance().setFavs();
+		if(User.isUserSignedIn()) {
+			User.getInstance().setFavs();
 		}
 		super.stop();
 	}

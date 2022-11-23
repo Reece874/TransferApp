@@ -15,7 +15,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import model.InfoDisplays;
-import model.Singleton;
+import model.User;
 
 public class EditController implements Initializable{
 	
@@ -39,18 +39,18 @@ public class EditController implements Initializable{
 	}
 	
 	public void Update() {
-		if(Singleton.getInstance().updateAccount(TfUsername.getText(), TFPswd.getText(), TFNewPswd.getText(), TfName.getText(), TfSAT.getText())) {
-			InfoDisplays.displayGenericInformation("Account was Updated");
+		if(User.getInstance().updateAccount(TfUsername.getText(), TFPswd.getText(), TFNewPswd.getText(), TfName.getText(), TfSAT.getText())) {	
+		InfoDisplays.displayGenericInformation("Account was Updated");
 		}
 	}
 
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
-		TfUsername.setText(Singleton.getInstance().getUsername());
-		TfName.setText(Singleton.getInstance().getFullName());
-		TFPswd.setText(Singleton.getInstance().getPassword());
-		TFNewPswd.setText(Singleton.getInstance().getPassword());
-		TfSAT.setText(Singleton.getInstance().getSAT());
+		TfUsername.setText(User.getInstance().getUsername());
+		TfName.setText(User.getInstance().getFullName());
+		TFPswd.setText(User.getInstance().getPassword());
+		TFNewPswd.setText(User.getInstance().getPassword());
+		TfSAT.setText(User.getInstance().getSAT());
 		
 	}
 	

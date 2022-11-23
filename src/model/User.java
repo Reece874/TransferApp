@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 public class User {
 	
+	private static User user; 
 	private int ID; 
 	private String FullName;
 	private String Username; 
@@ -11,7 +12,27 @@ public class User {
 	private String[] FavsList; 
 	private String SAT; 
 	
-	public User(int ID, String FullName, String Username, String Password, String favsList, String SAT) {
+//	public User(int ID, String FullName, String Username, String Password, String favsList, String SAT) {
+//		this.ID = ID; 
+//		this.FullName = FullName; 
+//		this.Username = Username; 
+//		this.Password = Password; 
+//		this.FavsList = favsList.replaceAll("[^0-9 ]", "").split(" "); 
+//		this.SAT = SAT;
+//	}
+	
+	private User() {
+		
+	}
+	
+	public static User getInstance() {
+		if(user == null) {
+			user = new User();
+		}
+		return user; 
+	}
+	
+	public void logIn(int ID, String FullName, String Username, String Password, String favsList, String SAT) {
 		this.ID = ID; 
 		this.FullName = FullName; 
 		this.Username = Username; 
@@ -20,9 +41,20 @@ public class User {
 		this.SAT = SAT;
 	}
 	
+	public static boolean isUserSignedIn() {
+		if(user == null) {
+			return false;
+		}
+		return true;
+	}
+	
 	public String[] getFavs() {
 		return FavsList; 
 	}
+	
+	public void setFavs() {
+	UserSearch.setFavsList(this.FavsList, this.ID);
+  }
 	
 	public int getID() {
 		return ID;
@@ -56,10 +88,6 @@ public class User {
 		Password = password;
 	}
 
-	public String[] getFavsList() {
-		return FavsList;
-	}
-
 	public void setFavsList(String[] favsList) {
 		FavsList = favsList;
 	}
@@ -70,6 +98,17 @@ public class User {
 
 	public String getSAT() {
 		return SAT;
+	}
+	
+	public boolean updateAccount(String Username, String Password, String PasswordConf, String Name, String SAT) {
+		if(UserSearch.UpdateAccount(Username, Password, PasswordConf, Name, SAT, this.ID)) {
+			this.Username = Username; 
+			this.Password = Password;
+			this.FullName = Name;
+			this.SAT = SAT; 
+			return true; 
+		}
+		return false; 
 	}
 	
 	public boolean isFav(String id) {

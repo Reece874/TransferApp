@@ -3,7 +3,6 @@ package model;
 public class Singleton {
 	
 	private static Singleton singleton; 
-	private User user; 
 	private String SchoolID; 
 	private boolean OutOfState;
 	private boolean OffCampus; 
@@ -23,60 +22,8 @@ public class Singleton {
 		return singleton; 
 	}
 	
-	public void setUser(int ID, String FullName, String Username, String Password, String favsList, String SAT) {
-		user = new User(ID, FullName, Username, Password, favsList, SAT);
-	}
-	
-	public void setFavs() {
-		UserSearch.setFavsList(user.getFavs(), user.getID());
-	}
-	
-	public String[] getUserFavs() {
-		return user.getFavs();
-	}
-	
-	public boolean updateAccount(String Username, String Password, String PasswordConf, String Name, String SAT) {
-		if(UserSearch.UpdateAccount(Username, Password, PasswordConf, Name, SAT, user.getID())) {
-			user.setUsername(Username);
-			user.setPassword(Password);
-			user.setFullName(Name);
-			user.setSAT(SAT);
-			return true;
-		}
-		else {
-			return false; 
-		}
-	}
-	
-	public String getSAT() {
-		return user.getSAT();
-	}
-	
-	public String getUsername() {
-		return user.getUsername();
-	}
-	
-	public String getPassword() {
-		return user.getPassword();
-	}
-	
-	public String getFullName() {
-		return user.getFullName();
-	}
-	
-	public boolean isFavoriteSchool() {
-		return user.isFav(SchoolID);
-	}
-	
-	public boolean toggle(String id) {
-		return user.toggleFavorite(id);
-	}
-	
-	public boolean isUserSignedIn() {
-		if(user == null) {
-			return false; 
-		}
-		return true;
+	public String SchoolID() {
+		return SchoolID; 
 	}
 	
 	public Connector getConnection() {

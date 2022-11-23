@@ -9,6 +9,7 @@ import model.InfoDisplays;
 import model.SchoolSearch;
 import model.Singleton;
 import model.TableItem;
+import model.User;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -125,7 +126,7 @@ public class SchoolController implements Initializable{
 
 	
 	public void GetFavs() {
-		SchoolTable.setItems(SchoolSearch.getFavorites(Singleton.getInstance().getUserFavs()));
+		SchoolTable.setItems(SchoolSearch.getFavorites(User.getInstance().getFavs()));
 	}
 	
 	
@@ -174,7 +175,8 @@ public class SchoolController implements Initializable{
 	public void UseMyScore() {
 		CheckNotRequired.setSelected(false);
 		CheckNotRequired.setDisable(!CheckNotRequired.isDisable());	
-		TFSAT.setText((TFSAT.isDisable())? "" : Singleton.getInstance().getSAT());
+		//TFSAT.setText((TFSAT.isDisable())? "" : Singleton.getInstance().getSAT());
+		TFSAT.setText((TFSAT.isDisable())? "" : User.getInstance().getSAT());
 		TFSAT.setDisable(!TFSAT.isDisable());
 	}
 	
@@ -213,8 +215,8 @@ public class SchoolController implements Initializable{
 		ColCity.setCellValueFactory(new PropertyValueFactory<>("City"));
 		ColState.setCellValueFactory(new PropertyValueFactory<>("State"));
 		
-		LblHi.setText("Hello, " + Singleton.getInstance().getFullName());
-		BtnUseSAT.setDisable((Singleton.getInstance().getSAT().equals("0")? true : false)); 	
+		LblHi.setText("Hello, " + User.getInstance().getFullName());
+		BtnUseSAT.setDisable((User.getInstance().getSAT().equals("0")? true : false)); 
 		SchoolTable.setItems(SchoolSearch.getAll());		
 	}
 	

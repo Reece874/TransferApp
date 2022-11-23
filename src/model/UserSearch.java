@@ -17,7 +17,7 @@ public class UserSearch {
 			preparedStatement.setString(2, Password);
 			ResultSet rs = preparedStatement.executeQuery();
 			if(rs.next()) {
-				Singleton.getInstance().setUser(rs.getInt("ID"), rs.getString("FullName"), rs.getString("Username"),
+				User.getInstance().logIn(rs.getInt("ID"), rs.getString("FullName"), rs.getString("Username"),
 						rs.getString("Password"), rs.getString("FavsList"), rs.getString("SATScore"));
 				return true; 
 			}else {

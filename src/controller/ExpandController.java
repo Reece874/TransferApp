@@ -16,6 +16,7 @@ import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
 import model.SchoolSearch;
 import model.Singleton;
+import model.User;
 
 public class ExpandController implements Initializable{
 	
@@ -94,7 +95,7 @@ public class ExpandController implements Initializable{
 	}
 	
 	public void Toggle() {
-		if(Singleton.getInstance().toggle(LblSchoolID.getText().substring(LblSchoolID.getText().lastIndexOf(" ")+1))) {
+		if(User.getInstance().toggleFavorite(LblSchoolID.getText().substring(LblSchoolID.getText().lastIndexOf(" ")+1))) {
 			LblFavorite.setVisible(!LblFavorite.isVisible()); 
 		}
 	}
@@ -125,7 +126,7 @@ public class ExpandController implements Initializable{
 		LblLocale.setText("Locale: " + items[19]);
 		TAMajors.setText(items[20]);
 		
-		if(Singleton.getInstance().isFavoriteSchool()) {
+		if(User.getInstance().isFav(Singleton.getInstance().getSchoolID())) {
 			LblFavorite.setVisible(true);
 		}
 	}
