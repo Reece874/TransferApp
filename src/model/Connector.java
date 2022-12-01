@@ -5,12 +5,17 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-
+/**
+ * 
+ * @author Reece Grimm
+ * @version 12/1/2022
+ *
+ */
 public class Connector {
 	
 	private static Connection conn = null; 
 	
-	public static Connection connector() {
+	private static Connection connector() {
 		try {
 			Class.forName("org.sqlite.JDBC");
 			String url = "jdbc:sqlite:SchoolDatabase.db";
@@ -22,6 +27,9 @@ public class Connector {
 		}
 	}
 	
+	/**
+	 * Connect to SQLite Database and Notify if the Connection Failed to be Created
+	 */
 	public Connector() {
 		conn = connector();
 		if(conn == null) {
@@ -30,6 +38,9 @@ public class Connector {
 		}
 	}
 	
+	/**
+	 * Close Connection to SQLite Database
+	 */
 	public static void closeConnection() {
 		try {
 			conn.close();
@@ -38,6 +49,10 @@ public class Connector {
 		}
 	}
 	
+	/**
+	 * Check if there is an Open Connection
+	 * @return true if there is a Connection, false if Otherwise
+	 */
 	public boolean isDBConnected() {
 		try {
 			return !conn.isClosed();
@@ -47,19 +62,25 @@ public class Connector {
 		}
 	}
 	
+	/**
+	 * Reopen Connection if Closed
+	 */
 	public static void resetConnection() {
 		try {
 			if(conn.isClosed()) {
 				conn = connector();
-				if(conn == null) {
-					System.out.println("Connection Failed");
-				}
 			}
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}
 	}
 	
+	/**
+	 * Create Prepared Statement from Connection 
+	 * @param query To Be Prepared 
+	 * @return Prepared Statement of Query
+	 * @throws SQLException if there is no Connection to SQLite Database
+	 */
 	public static PreparedStatement prepareStatement(String query) throws SQLException {
 		return conn.prepareStatement(query);
 	}

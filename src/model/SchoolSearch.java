@@ -8,8 +8,19 @@ import java.util.Arrays;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
+/**
+ * 
+ * @author Reece Grimm
+ * @version 12/1/2022
+ *
+ */
 public class SchoolSearch {
 
+	/**
+	 * Get all Information on a Selected School
+	 * @param ID ID of School
+	 * @return String Array of all School Parameters
+	 */
 	public static String[] getItems(String ID) {
 		Connector.resetConnection();
 		String query = "select * from schools "
@@ -39,6 +50,11 @@ public class SchoolSearch {
 		return null; 
 	}
 	
+	/**
+	 * Get Observable List of All Schools as TableItems
+	 * @param arr String Array of School ID's 
+	 * @return Observable List of All Schools as TableItems
+	 */
 	public static ObservableList<TableItem> getFavorites(String[] arr){
 		Connector.resetConnection();
 		ObservableList<TableItem> list = FXCollections.observableArrayList();
@@ -56,10 +72,36 @@ public class SchoolSearch {
 		return list; 
 	}
 	
+	/**
+	 * Get all Schools in Database
+	 * @return Observable List of all Schools as TableItems
+	 */
 	public static ObservableList<TableItem> getAll(){
 		return searchParams(null, null, null, null, null, null, 0, 0, null, null, null, null, null, null, 0, 0, null, null); 
 	}
 	
+	/**
+	 * Get all Schools in Database that Match Given Parameters 
+	 * @param ID ID of School.  Must be Exact.  If Parameter is not 0 only One School Should be Returned. 0 will ignore the ID parameter
+	 * @param Name Name of School.  Can be a Substring. I.e. Search for all Schools that have "SUNY" in Their Name.  Will not Include in Search if Left Blank 
+	 * @param City Name of City to Search For Schools in.  Will Not Include if Left Blank
+	 * @param State State Abbreviation to Search For Schools in.  Will not Include in Search if Left Blank or as "--" 
+	 * @param Highest Highest Degree Offered at a School.  Will not Include in Search if Left Blank or as "--" 
+	 * @param Predominant The Predominant Degree Offered at a School.  Will not Include in Search if Left Blank or as "--" 
+	 * @param Tuition Average Cost of Tuition of a School.  Will Also Include all Schools With a Lower Tuition.  Will not Include in Search if Left Blank 
+	 * @param RoomBoard Average Cost of Room and Board at a School. Will Also Include all Schools With a Lower Price.  Will not Include in Search if Left Blank 
+	 * @param minPopulation Minimum Number of People Enrolled at School.  Will also Include all Schools with a Higher Population unless Max is Specified. Will Not Include in Search if Left Blank or as 0   
+	 * @param maxPopulation Maximum Number of People Enrolled at School.  Will also Include all Schools with a Lower Population unless Min is Specified. Will Not Include in Search if Left Blank or as 0  
+	 * @param Major Intended Major at School. Will not Include in Search if Left Blank or as "--" 
+	 * @param SATScore Average SAT Score at School.  Will also Include all Schools With A Lower Average SAT Score.  Will Not Include in Search if Left Blank or as 0
+	 * @param religion Religious Association of School.  Will not Include in Search if Left Blank or as "--" 
+	 * @param Ownership Level of Ownership of School.  Will not Include in Search if Left Blank or as "--"   
+	 * @param PellGrant Average Pell Grant Rate at a School.  Will also Include Schools with a Higher Rate.  Will Not Include in Search if Left Blank or as 0
+	 * @param Admission Admission Rate of School.  Will also Include all Schools with a Higher Rate. Will Not Include in Search if Left Blank or as 0
+	 * @param Region Region a School Resides in.  Will Not Include in Search if Left Blank or as "--"
+	 * @param Locale Locale of School.  Will Not Include in Search if Left Blank or as "--"
+	 * @return Observable List of All Schools that Match Given Parameters
+	 */
 	public static ObservableList<TableItem> searchParams(String ID, String Name, String City, String State, 
 		String Highest, String Predominant, int Tuition, int RoomBoard, String minPopulation, String maxPopulation, 
 		String Major, String SATScore, String religion, String Ownership, int PellGrant, int Admission, String Region, String Locale){

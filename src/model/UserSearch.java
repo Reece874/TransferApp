@@ -1,12 +1,25 @@
 package model;
 
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
 
+/**
+ * 
+ * @author Reece Grimm
+ * @version 12/1/2022
+ *
+ */
 public class UserSearch {
 	
+	/**
+	 * Get User from Database and Set Logged in User to specified User 
+	 * @param Username Username of User 
+	 * @param Password Password of User 
+	 * @return true if login was Successul, false otherwise 
+	 */
 	public static boolean login(String Username, String Password) {
 		Connector.resetConnection();
 		PreparedStatement preparedStatement = null; 
@@ -32,8 +45,18 @@ public class UserSearch {
 
 	}
 	
+	/**
+	 * Add User to Database 
+	 * @param Username Username for User 
+	 * @param Password Password for User 
+	 * @param PasswordConf Check Password Matches 
+	 * @param FirstName First Name of User 
+	 * @param LastName Last Name of User 
+	 * @param SATScore SAT Score of User 
+	 * @return true if user was added, false if not 
+	 */
 	public static boolean SignUp(String Username, String Password, String PasswordConf, String FirstName, String LastName, String SATScore) {
-		if(UserCreationCheckers.checkEverything(Username, Password, PasswordConf, FirstName, LastName, SATScore) && containsUsername(Username, 0)) {
+		if(UserCreationCheckers.checkEverything(Username, Password, PasswordConf, FirstName, LastName, SATScore) && UserCreationCheckers.containsUsername(Username, 0)) {
 			try {
 				String Fullname = FirstName + " " + LastName; 
 				int SAT = (SATScore == null || SATScore.equals(""))? 0 : Integer.parseInt(SATScore); 
@@ -47,8 +70,18 @@ public class UserSearch {
 		return false;
 	}
 	
+	/**
+	 * Change all of Users information 
+	 * @param Username Username to change to 
+	 * @param Password Password to Change to 
+	 * @param PasswordConf Confirm Password matches 
+	 * @param Name Name to Change To 
+	 * @param SATScore Score to Change To
+	 * @param ID ID of user to be Updated 
+	 * @return true if Update was Successful, False if not 
+	 */
 	public static boolean UpdateAccount(String Username, String Password, String PasswordConf, String Name, String SATScore, int ID) {
-		if(UserCreationCheckers.checkEverything(Username, Password, PasswordConf, Name, Name, SATScore) && containsUsername(Username, ID)) {
+		if(UserCreationCheckers.checkEverything(Username, Password, PasswordConf, Name, Name, SATScore) && UserCreationCheckers.containsUsername(Username, ID)) {
 			try {
 				int SAT = (SATScore == null || SATScore.equals(""))? 0 : Integer.parseInt(SATScore); 
 				update(Username, PasswordConf, Name, SAT, ID);
@@ -61,6 +94,11 @@ public class UserSearch {
 		return false;
 	}
 
+	/**
+	 * Update Favorites List of User 
+	 * @param ids String Array of favorites IDs 
+	 * @param ID Users ID
+	 */
 	public static void setFavsList(String[] ids, int ID) {
 		Connector.resetConnection();
 		PreparedStatement preparedStatement = null; 
@@ -71,7 +109,7 @@ public class UserSearch {
 			preparedStatement.setInt(2, ID);
 			preparedStatement.executeUpdate(); 
 		}catch(SQLException e) {
-			InfoDisplays.displayGenericError("Error connecting to Datsabase", "Please Try Again Later");
+			InfoDisplays.displayGenericError("Error connecting to Database", "Please Try Again Later");
 		}finally {
 			Connector.closeConnection();
 		}
@@ -114,29 +152,5 @@ public class UserSearch {
 			Connector.closeConnection();
 		}
 	}
-	
-    public static boolean containsUsername(String user, int ID) {
-    	Connector.resetConnection();
-        PreparedStatement preparedStatement = null; 
-        ResultSet results = null; 
-        String query = "select * from users where Username=?";
-        try {
-            preparedStatement = Connector.prepareStatement(query);
-            preparedStatement.setString(1, user);
-            results = preparedStatement.executeQuery();
-            if(!results.next() || results.getInt("ID") == ID) {
-                return true; 
-            }
-            
-          InfoDisplays.displayGenericInformation("Username is already in use");
-          return false; 
-        }catch(SQLException e) {
-            InfoDisplays.displayGenericError("Something Went Wrong", "Please Try Again later");
-            return false; 
-        }finally {
-        	Connector.closeConnection();
-        }
-        
-    }
 	
 }

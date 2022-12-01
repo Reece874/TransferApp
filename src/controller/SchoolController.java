@@ -174,8 +174,8 @@ public class SchoolController implements Initializable{
 	
 	public void UseMyScore() {
 		CheckNotRequired.setSelected(false);
+		ChangeRequired();
 		CheckNotRequired.setDisable(!CheckNotRequired.isDisable());	
-		//TFSAT.setText((TFSAT.isDisable())? "" : Singleton.getInstance().getSAT());
 		TFSAT.setText((TFSAT.isDisable())? "" : User.getInstance().getSAT());
 		TFSAT.setDisable(!TFSAT.isDisable());
 	}

@@ -1,7 +1,27 @@
 package model;
 
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+/**
+ * 
+ * @author Reece Grimm
+ * @version 12/1/2022
+ *
+ */
 public class UserCreationCheckers {
 	
+	/**
+	 * Check all Information is Valid
+	 * @param Username Potential Username 
+	 * @param Password Potential Password 
+	 * @param PasswordConf Password to check Matching 
+	 * @param FirstName Potential First Name 
+	 * @param LastName Potential Last Name 
+	 * @param SAT SAT Score of User 
+	 * @return true if User Can be Created, False if Not 
+	 */
 	public static boolean checkEverything(String Username, String Password, String PasswordConf, String FirstName, String LastName, String SAT) {
 		StringBuilder info = new StringBuilder(); 
 		
@@ -34,6 +54,36 @@ public class UserCreationCheckers {
 			return true; 		
 	}
 	
+	/**
+	 * Check if Username is Already Taken 
+	 * @param user Potential Username for user 
+	 * @param ID ID of student wishing to change Username 
+	 * @return true if Username can be changed, false if not 
+	 */
+    public static boolean containsUsername(String user, int ID) {
+    	Connector.resetConnection();
+        PreparedStatement preparedStatement = null; 
+        ResultSet results = null; 
+        String query = "select * from users where Username=?";
+        try {
+            preparedStatement = Connector.prepareStatement(query);
+            preparedStatement.setString(1, user);
+            results = preparedStatement.executeQuery();
+            if(!results.next() || results.getInt("ID") == ID) {
+                return true; 
+            }
+            
+          InfoDisplays.displayGenericInformation("Username is already in use");
+          return false; 
+        }catch(SQLException e) {
+            InfoDisplays.displayGenericError("Something Went Wrong", "Please Try Again later");
+            return false; 
+        }finally {
+        	Connector.closeConnection();
+        }
+        
+    }
+	
 	private static boolean checkParams(String Username, String Password, String FirstName, String LastName) {
 		if(Username == "" || Password == "" || FirstName == "" || LastName == "") {
 			return false; 
@@ -47,15 +97,15 @@ public class UserCreationCheckers {
 		}
 		return false; 
 	}
-	
-	public static boolean checkUsername(String Username) {
+
+	private static boolean checkUsername(String Username) {
 		if(Username.length() < 6) {
 			return false; 
 		}	
 		return true; 
 	}
 	
-	public static boolean checkPassword(String Password) {
+	private static boolean checkPassword(String Password) {
 		if(Password.length() < 6) {
 			return false; 
 		}	
